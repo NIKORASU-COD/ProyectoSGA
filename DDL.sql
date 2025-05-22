@@ -4,7 +4,7 @@ USE ProyectoSGA;
 
 CREATE TABLE Barrio (
 ID_Barrio smallint primary key auto_increment,
-NomBarrio varchar(30)
+NomBar varchar(30)
 );
 
 CREATE TABLE Documento (
@@ -12,15 +12,15 @@ ID_TipoDoc tinyint primary key auto_increment,
 NomDoc int 
 );
 
+CREATE TABLE Roles (
+ID_Rol tinyint primary key auto_increment,
+NomRol varchar(15)
+);
+
 CREATE TABLE Categorias (
 ID_Categoria tinyint primary key auto_increment,
 NomCat varchar(30),
 Descripción varchar(45)
-);
-
-CREATE TABLE Roles (
-ID_Rol tinyint primary key auto_increment,
-NomRol varchar(15)
 );
 
 CREATE TABLE Articulos (
@@ -78,4 +78,37 @@ CREATE TABLE Articulos_Alquiler (
 	ID_Articulo smallint,
     ID_Alquiler smallint,
     Estado boolean
-)
+);
+
+# Llaves foraneas tabla usuarios #
+ALTER TABLE Usuarios 
+ADD CONSTRAINT FK_Usuario_Barrio
+FOREIGN KEY (ID_Barrio) REFERENCES Barrio (ID_Barrio);
+
+ALTER TABLE Usuarios 
+ADD CONSTRAINT FK_Usuario_TipoDoc
+FOREIGN KEY (ID_TipoDoc) REFERENCES Documento (ID_TipoDoc);
+
+ALTER TABLE Usuarios 
+ADD CONSTRAINT FK_Usuario_Rol
+FOREIGN KEY (ID_Rol) REFERENCES Roles (ID_Rol);
+
+# Llave foranea tabla usuarios #
+ALTER TABLE Alquiler 
+ADD CONSTRAINT FK_Alquiler_Usuario
+FOREIGN KEY (Num_Doc) REFERENCES Usuarios (Num_Doc);
+
+# Llave foranea tabla facturas #
+ALTER TABLE Facturas
+ADD CONSTRAINT FK_Factura_Alquiler
+FOREIGN KEY (ID_Orden) REFERENCES Alquiler (ID_Alquiler);
+
+# Llave foranea tabla pagos #
+ALTER TABLE Pagos
+ADD CONSTRAINT FK_Pagos_Factura
+FOREIGN KEY (ID_Orden) REFERENCES Facturas (ID_Orden);
+
+# Llave foranea tabla articulos #
+ALTER TABLE Articulos 
+ADD CONSTRAINT FK_Articulos_Categoria
+FOREIGN KEY (ID_Categoria) REFERENCES Categorias (ID_Categoria);
