@@ -75,8 +75,8 @@ CREATE TABLE Facturas_Articulos (
 );
 
 CREATE TABLE Articulos_Alquiler (
-	ID_Articulo smallint,
-    ID_Alquiler smallint,
+	ARTICULOSID_Articulo smallint,
+    ALQUILERID_Alquiler smallint,
     Estado boolean
 );
 
@@ -112,3 +112,14 @@ FOREIGN KEY (ID_Orden) REFERENCES Facturas (ID_Orden);
 ALTER TABLE Articulos 
 ADD CONSTRAINT FK_Articulos_Categoria
 FOREIGN KEY (ID_Categoria) REFERENCES Categorias (ID_Categoria);
+
+# llaves compuestas tabla Articulos_Alquiler 
+ALTER TABLE Articulos_Alquiler
+ADD CONSTRAINT PK_Articulos_Alquiler
+PRIMARY KEY(ARTICULOSID_articulo, ALQUILERID_Alquiler);
+ALTER TABLE Articulos_Alquiler
+ADD CONSTRAINT FK_Articulos
+FOREIGN KEY (ARTICULOSID_articulo) REFERENCES Articulos(ID_Articulo);
+ALTER TABLE Articulos_Alquiler
+ADD CONSTRAINT FK_Articulos_Alquiler
+FOREIGN KEY (ALQUILERID_Alquiler) REFERENCES Alquiler(ID_Alquiler);
