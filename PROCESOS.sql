@@ -32,7 +32,6 @@ DROP procedure IF EXISTS `insert_articulos`;
 DELIMITER $$
 USE `proyectosga`$$
 CREATE PROCEDURE `insert_articulos` (
-IN ID_Articulo smallint,
 IN NomArti varchar(30),
 IN Genero varchar(15),
 IN Talla varchar(5),
@@ -42,8 +41,8 @@ IN ID_Categoria tinyint
 
 )
 BEGIN
-INSERT INTO Articulos (ID_Articulo, NomArti, Genero, Talla, Color, Precio, ID_Categoria)
-VALUES (ID_Articulo, NomArti, Genero, Talla, Color, Precio, ID_Categoria);
+INSERT INTO Articulos ( NomArti, Genero, Talla, Color, Precio, ID_Categoria)
+VALUES ( NomArti, Genero, Talla, Color, Precio, ID_Categoria);
 END$$
 
 DELIMITER ;
@@ -55,15 +54,13 @@ DROP procedure IF EXISTS `insert_facturas`;
 DELIMITER $$
 USE `proyectosga`$$
 CREATE PROCEDURE `insert_facturas` (
-IN ID_Orden smallint,
-IN FechaFac date,
+IN FeFac timestamp,
 IN Saldo mediumint,
 IN ID_Alquiler smallint
-
 )
 BEGIN
-INSERT INTO Facturas ( ID_Orden, FechaFac, Saldo, ID_Alquiler)
-VALUES ( ID_Orden, FechaFac, Saldo, ID_Alquiler);
+INSERT INTO Facturas (Saldo, ID_Alquiler)
+VALUES ( Now(),Saldo, ID_Alquiler);
 END$$
 
 DELIMITER ;
@@ -75,14 +72,13 @@ DROP procedure IF EXISTS `insert_pagos`;
 DELIMITER $$
 USE `proyectosga`$$
 CREATE PROCEDURE `insert_pagos` (
-IN ID_Pago smallint,
 IN FechaUltiPago date,
 IN ValorAbono mediumint,
 IN ID_Orden smallint
 )
 BEGIN
-INSERT INTO pagos(ID_Pago,FechaUltiPago ,ValorAbono,ID_Orden)
-VALUE (ID_Pago,FechaUltiPago ,ValorAbono,ID_Orden);
+INSERT INTO pagos(FechaUltiPago ,ValorAbono,ID_Orden)
+VALUE (FechaUltiPago ,ValorAbono,ID_Orden);
 END$$
 
 DELIMITER ;
@@ -94,15 +90,31 @@ DROP procedure IF EXISTS `insert_alquiler`;
 DELIMITER $$
 USE `proyectosga`$$
 CREATE PROCEDURE `insert_alquiler` (
- IN ID_Alquiler smallint,
 IN FechaRet date,
 IN FechaEnt date,
 IN Num_Doc varchar(15)
 )
 
 BEGIN
-INSERT INTO Alquiler (ID_Alquiler,FechaRet,FechaEnt,Num_Doc)
-VALUES (ID_Alquiler,FechaRet,FechaEnt,Num_Doc );
+INSERT INTO Alquiler (FechaRet,FechaEnt,Num_Doc)
+VALUES (FechaRet,FechaEnt,Num_Doc );
+END$$
+
+DELIMITER ;
+
+#proceso de insertar articulo al alquler
+USE `proyectosga`;
+DROP procedure IF EXISTS `Insert_Art_Alq`;
+
+DELIMITER $$
+USE `proyectosga`$$
+CREATE PROCEDURE Insert_Art_Alq (
+IN id_alq smallint,
+IN id_art smallint,
+IN observaciones varchar(60)
+)
+BEGIN
+INSERT INTO articulos_alquiler(ARTICULOSID_Articulo, ALQUILERID_Alquiler, Observaciones) VALUES (id_alq,id_art,observaciones);
 END$$
 
 DELIMITER ;

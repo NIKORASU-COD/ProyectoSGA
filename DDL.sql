@@ -9,7 +9,7 @@ NomBar varchar(30)
 
 CREATE TABLE Documento (
 ID_TipoDoc tinyint primary key auto_increment,
-NomDoc int 
+NomDoc VARCHAR(30) 
 );
 
 CREATE TABLE Roles (
@@ -35,7 +35,7 @@ ID_Categoria tinyint
 
 CREATE TABLE Facturas (
 ID_Orden smallint primary key auto_increment,
-FechaFac date,
+FechaFac timestamp default current_timestamp,
 Saldo mediumint,
 ID_Alquiler smallint
 );
@@ -44,7 +44,7 @@ CREATE TABLE Pagos (
 ID_Pago smallint primary key auto_increment,
 FechaUltiPago date,
 ValorAbono mediumint,
-ID_Orden smallint
+ID_Orden smallint  
 );
 
 CREATE TABLE Alquiler (
@@ -77,7 +77,7 @@ CREATE TABLE Facturas_Articulos (
 CREATE TABLE Articulos_Alquiler (
 	ARTICULOSID_Articulo smallint,
     ALQUILERID_Alquiler smallint,
-    Estado boolean
+    Observaciones varchar(60)
 );
 
 # Llaves foraneas tabla usuarios #
