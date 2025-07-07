@@ -62,10 +62,14 @@ Ape1 varchar (20),
 Ape2 varchar (20),
 Dirección varchar (35),
 NumTel bigint,
+CorreoElec varchar (45),
+Contraseña varchar (35),
 ID_Barrio smallint,
 ID_TipoDoc tinyint,
 ID_Rol tinyint
 );
+
+
 
 CREATE TABLE Facturas_Articulos (
 	ID_Orden smallint,

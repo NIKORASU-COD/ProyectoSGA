@@ -13,14 +13,16 @@ IN Ape1 varchar (20),
 IN Ape2 varchar (20),
 IN Dirección varchar (35),
 IN NumTel bigint,
+IN Correo varchar (45),
+IN Contra varchar (35),
 IN ID_Barrio smallint,
 IN ID_TipoDoc tinyint,
 IN ID_Rol tinyint
 
 )
 BEGIN
-INSERT INTO Usuarios (Num_Doc, Nom1, Nom2, Ape1, Ape2, Dirección, NumTel, ID_Barrio, ID_TipoDoc, ID_Rol)
-VALUES (Num_Doc, Nom1, Nom2, Ape1, Ape2, Dirección, NumTel, ID_Barrio, ID_TipoDoc, ID_Rol);
+INSERT INTO Usuarios (Num_Doc, Nom1, Nom2, Ape1, Ape2, Dirección, NumTel, Correo, Contraseña, ID_Barrio, ID_TipoDoc, ID_Rol)
+VALUES (Num_Doc, Nom1, Nom2, Ape1, Ape2, Dirección, NumTel,Correo, Contra, ID_Barrio, ID_TipoDoc, ID_Rol);
 END$$
 
 DELIMITER ;
