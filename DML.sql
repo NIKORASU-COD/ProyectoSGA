@@ -2,7 +2,7 @@ INSERT INTO Barrio (NomBar) VALUES ("Aguas Claras"), ("Altos del Zipa"), ("Amapo
 INSERT INTO Documento (NomDoc) VALUES ("Ceudula Ciudadania"), ("Cedula Extranjeria"), ("Pasaporte"), ("NIT");
 INSERT INTO Roles(NomRol) VALUES ("Cliente"),("Administradir"),("Empleado");
 INSERT INTO Categorias (NomCat) VALUES ("Vestido de novia"), ("Vestido de quinceañera"), ("Vestido de primera comunión"), ("Vestido de pajecita"), ("Smoking"), ("Frac"), ("Corbata"), ("Camisa"), ("Pajarita"), ("Bolso"), ("Zapatos"), ("Tacones");
-CALL insert_usuario (1031123360, "David", "Leonardo", "Bautista", "Contreras", "cra 27 #53-08 sur", 3016044930, 1, 1, 1);
+CALL insert_usuario (1031123360, "David", "Leonardo", "Bautista", "Contreras", "cra 27 #53-08 sur", 3016044930,"leoputo@gmail.com", "leonardogay", 1, 1, 1);
 CALL insert_articulos ("Novia Corazón", "F", "XS", "Blanco perla", 550000, 1);
 CALL insert_alquiler("2025-06-6","2025-06-10",1031123360);
 CALL insert_Art_Alq(1,1,"subir ruedo 2cm y arreglar hueco");
