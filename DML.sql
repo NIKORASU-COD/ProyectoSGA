@@ -2,22 +2,18 @@ INSERT INTO Barrio (NomBar) VALUES ("Aguas Claras"), ("Altos del Zipa"), ("Amapo
 INSERT INTO Documento (NomDoc) VALUES ("Ceudula Ciudadania"), ("Cedula Extranjeria"), ("Pasaporte"), ("NIT");
 INSERT INTO Roles(NomRol) VALUES ("Cliente"),("Administradir"),("Empleado");
 INSERT INTO Categorias (NomCat) VALUES ("Vestido de novia"), ("Vestido de quinceañera"), ("Vestido de primera comunión"), ("Vestido de pajecita"), ("Smoking"), ("Frac"), ("Corbata"), ("Camisa"), ("Pajarita"), ("Bolso"), ("Zapatos"), ("Tacones");
-CALL insert_usuario (1031123360, "David", "Leonardo", "Bautista", "Contreras", "cra 27 #53-08 sur", 3016044930,"leoputo@gmail.com", "leonardogay", 1, 1, 1);
+CALL insert_usuario (1031123360, "David", "Leonardo", "Bautista", "Contreras", "cra 27 #53-08 sur", 3016044930,"leo@gmail.com", "ElPrincipeDeLasTinieblas", 1, 1, 1);
 CALL insert_articulos ("Novia Corazón", "F", "XS", "Blanco perla", 550000, 1);
+CALL insert_articulos ("Smokin", "M", "L", "Negro mate", 100000, 5);
 CALL insert_alquiler("2025-06-6","2025-06-10",1031123360);
 CALL insert_Art_Alq(1,1,"subir ruedo 2cm y arreglar hueco");
-CALL insert_facturas(now(),50000,1);
+CALL insert_Art_Alq(2,1,"Agarrar cintura y hombros");
+CALL insert_facturas(50000,1);
+CALL insert_pagos (now(), 25000,1);
 
-SELECT u.Num_Doc, CONCAT(u.Nom1," ", u.Nom2," ", u.Ape1," ", u.Ape2) AS Nombre, u.Dirección, u.NumTel, ba.NomBar, td.NomDoc, ro.NomRol
-FROM usuarios as u
-JOIN barrio as ba
-ON u.ID_Barrio = ba.ID_Barrio
-JOIN documento as td
-ON u.ID_TipoDoc = td.ID_TipoDoc
-JOIN roles as ro
-ON u.ID_Rol = ro.ID_Rol;
+SELECT * FROM proyectosga.usuarios;
+SELECT cast(aes_decrypt(Contraseña, "Clave123") AS char) FROM Usuarios;
+SELECT cast(Contraseña as char) from usuarios
 
-SELECT culo.NomArti, ara.ALQUILERID_Alquiler, ara.Observaciones
-FROM articulos_alquiler as ara
-JOIN articulos as culo
-ON ara.ARTICULOSID_Articulo = culo.ID_Articulo;
+
+

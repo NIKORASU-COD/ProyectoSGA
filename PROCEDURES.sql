@@ -22,7 +22,7 @@ IN ID_Rol tinyint
 )
 BEGIN
 INSERT INTO Usuarios (Num_Doc, Nom1, Nom2, Ape1, Ape2, Dirección, NumTel, CorreoElec, Contraseña, ID_Barrio, ID_TipoDoc, ID_Rol)
-VALUES (Num_Doc, Nom1, Nom2, Ape1, Ape2, Dirección, NumTel,Correo, aes_encrypt(contra, "sexo"), ID_Barrio, ID_TipoDoc, ID_Rol);
+VALUES (Num_Doc, Nom1, Nom2, Ape1, Ape2, Dirección, NumTel,Correo, aes_encrypt(contra, "Clave123"), ID_Barrio, ID_TipoDoc, ID_Rol);
 END$$
 
 DELIMITER ;
@@ -56,12 +56,11 @@ DROP procedure IF EXISTS `insert_facturas`;
 DELIMITER $$
 USE `proyectosga`$$
 CREATE PROCEDURE `insert_facturas` (
-IN FeFac timestamp,
 IN Saldo mediumint,
 IN ID_Alquiler smallint
 )
 BEGIN
-INSERT INTO Facturas (Saldo, ID_Alquiler)
+INSERT INTO Facturas (FechaFac, Saldo, ID_Alquiler)
 VALUES ( Now(),Saldo, ID_Alquiler);
 END$$
 
@@ -103,6 +102,7 @@ VALUES (FechaRet,FechaEnt,Num_Doc );
 END$$
 
 DELIMITER ;
+
 
 #proceso de insertar articulo al alquler
 USE `proyectosga`;
